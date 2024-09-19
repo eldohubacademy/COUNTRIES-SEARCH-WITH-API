@@ -2,7 +2,8 @@
 
 // using the fetch method in js --- fetch is assynchronous --  promises
 
- async function getCountryData(country){    
+ async function getCountryData(country){   
+
     const response = await fetch(`https://restcountries.com/v3.1/name/${country}`) // htttp resp
     const ourData = await response.json() 
    console.log(ourData);
@@ -18,6 +19,8 @@
     getCountryData(search)
  })
 const countryDiv = document.querySelector(".country")
+
+
  function buildUI(country){
     if(country.status == 404){
         countryDiv.innerHTML = `<p style="color:orangered" > Country Not Found </p>`
@@ -26,6 +29,9 @@ const countryDiv = document.querySelector(".country")
         countryDiv.innerHTML = `
                 <img src = "${country.flags.png}" alt="${country.flags.alt}" width="400px" >
                 <h2> ${country.name.official} <h2>
+                <p> Capital: ${country.capital[0]} </p>
+               <p> Region: ${country.region} </p>
+
         `
     }
  }
